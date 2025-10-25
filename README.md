@@ -1,105 +1,145 @@
 # Codio AWS Marketplace Landing Pages
 
-This repository contains the landing page templates and deployment infrastructure for Codio's AWS Marketplace offerings.
+Production-ready landing page system for Codio's AWS Marketplace offerings.
 
-## Products
+## 🚀 Live Deployments
 
-- **Cloud Labs for Tech Skills** - Programming, data, and security skills labs
-- **AWS Labs Sandboxes** - Secure AWS cloud training environments  
-- **AI Lab Sandboxes** - AI/ML frameworks and tools
+All three product pages are **currently deployed and live**:
 
-## Architecture
+- **Cloud Labs**: https://d234aouv3s64w7.cloudfront.net/
+- **AWS Labs**: https://d2ultfrcf31z94.cloudfront.net/  
+- **AI Labs**: https://dfz8x9h0xd99s.cloudfront.net/
 
-### Template System
-- `src/web-templates/index.template.html` - Main template with placeholders
-- `page-config.json` - Product configurations and content
-- `generate-pages.js` - Script to generate individual product pages
+## 📁 Repository Structure
 
-### Generated Pages
-- `cloud-labs-index.html` - Cloud Labs landing page
-- `aws-labs-index.html` - AWS Labs landing page  
-- `ai-labs-index.html` - AI Labs landing page
+```
+├── src/
+│   ├── web-templates/index.template.html    # Main template
+│   ├── cdk/                                 # Infrastructure as code
+│   ├── lambda/                              # Registration functions
+│   └── web-generated/                       # Generated static files
+├── page-config.json                         # Product configurations
+├── generate-pages.js                        # Page generator script
+├── package.json                             # NPM scripts & dependencies
+├── deploy-marketplace.sh                    # Deployment script
+├── deploy-*.yaml                            # CloudFormation templates
+└── marketplace-config.json                  # AWS deployment config
+```
 
-### Deployment
-Pages are deployed to S3 buckets with CloudFront distributions:
-- Cloud Labs: `s3://cloud-labs-web-68b3f5c0/` → `d234aouv3s64w7.cloudfront.net`
-- AWS Labs: `s3://aws-labs-web-796a80b0/` → `d2ultfrcf31z94.cloudfront.net`
-- AI Labs: `s3://ai-labs-web-930e7cc0/` → `dfz8x9h0xd99s.cloudfront.net`
+## ⚡ Quick Start
 
-## Development Workflow
+### 1. Install Dependencies
+```bash
+npm install  # (if any dependencies added in future)
+```
 
-### Making Changes
+### 2. Make Content Changes
+Edit `page-config.json` to update product descriptions, features, etc.
 
-1. **Update Content**: Edit `page-config.json` to modify product descriptions, features, etc.
+### 3. Generate Pages
+```bash
+npm run generate
+```
 
-2. **Update Design**: Modify `src/web-templates/index.template.html` for layout/styling changes
+### 4. Deploy Changes
+```bash
+npm run deploy:pages
+```
 
-3. **Generate Pages**: Run the generation script
-   ```bash
-   node generate-pages.js
-   ```
+## 🛠 NPM Scripts
 
-4. **Deploy**: Upload to S3 and invalidate CloudFront cache
-   ```bash
-   # Upload to S3
-   aws s3 cp ai-labs-index.html s3://ai-labs-web-930e7cc0/index.html
-   aws s3 cp aws-labs-index.html s3://aws-labs-web-796a80b0/index.html
-   aws s3 cp cloud-labs-index.html s3://cloud-labs-web-68b3f5c0/index.html
-   
-   # Invalidate CloudFront cache
-   aws cloudfront create-invalidation --distribution-id E7K8B2EHD7P3U --paths "/*"
-   aws cloudfront create-invalidation --distribution-id E3L0YJ3DS46XHU --paths "/*"
-   aws cloudfront create-invalidation --distribution-id E13IJ9NI8XJ7T5 --paths "/*"
-   ```
+- `npm run generate` - Generate all product pages from template
+- `npm run deploy:pages` - Full deployment (generate + upload + cache invalidation)
+- `npm run upload` - Upload generated pages to S3 buckets
+- `npm run invalidate` - Invalidate CloudFront cache for immediate updates
+
+## 🎨 Template System
+
+### Template File
+`src/web-templates/index.template.html` - Main template with placeholders
+
+### Configuration
+`page-config.json` - Product configurations including:
+- Product names and descriptions
+- Feature lists with icons
+- AWS Marketplace product codes
+- API endpoints
 
 ### Template Variables
-
-The template uses these placeholders:
 - `{{LISTING_NAME}}` - Product name
-- `{{LISTING_DESCRIPTION}}` - Product description
-- `{{FEATURES}}` - Feature list HTML
+- `{{LISTING_DESCRIPTION}}` - Product description  
+- `{{FEATURES}}` - Generated feature list HTML
 - `{{PRODUCT_CODE}}` - AWS Marketplace product code
 - `{{API_ENDPOINT}}` - Registration API endpoint
 
-## Design Features
+## 🏗 AWS Infrastructure
 
-- **Responsive Design** - Works on desktop and mobile
+### S3 Buckets (Static Hosting)
+- `cloud-labs-web-68b3f5c0` → Cloud Labs
+- `aws-labs-web-796a80b0` → AWS Labs
+- `ai-labs-web-930e7cc0` → AI Labs
+
+### CloudFront Distributions (CDN)
+- `E13IJ9NI8XJ7T5` → Cloud Labs
+- `E3L0YJ3DS46XHU` → AWS Labs  
+- `E7K8B2EHD7P3U` → AI Labs
+
+### Lambda Functions
+- Registration processing and validation
+- AWS Marketplace event handling
+- SQS message processing for subscriptions
+
+## 🔄 Development Workflow
+
+1. **Content Updates**: Edit `page-config.json`
+2. **Design Changes**: Modify `src/web-templates/index.template.html`
+3. **Generate**: Run `npm run generate`
+4. **Deploy**: Run `npm run deploy:pages`
+5. **Verify**: Check live URLs (cache invalidation takes 1-2 minutes)
+
+## 🎯 Design Features
+
+- **Responsive Design** - Mobile-friendly layout
 - **Dark Gradient Background** - Professional appearance
 - **Two-Column Layout** - Content left, registration form right
-- **Feature Highlights** - Icon-based feature list
+- **Feature Highlights** - Icon-based feature showcase
 - **AWS Marketplace Integration** - Handles registration tokens and API submission
 
-## Infrastructure
+## 🔐 Security & Best Practices
 
-### AWS Resources
-- S3 buckets for static hosting
-- CloudFront distributions for CDN
-- Lambda functions for registration processing
-- SQS queues for marketplace events
+- Public repository with no sensitive data
+- AWS credentials managed via IAM roles/profiles
+- CloudFront provides HTTPS and global CDN
+- Registration tokens validated server-side
 
-### Registration Flow
-1. User clicks from AWS Marketplace (includes registration token)
-2. Landing page captures user details
-3. Form submits to Lambda function via API Gateway
-4. Lambda processes registration and handles marketplace integration
+## 📊 Monitoring & Troubleshooting
 
-## Deployment Scripts
+### Check Deployment Status
+```bash
+aws s3 ls s3://ai-labs-web-930e7cc0/
+aws cloudfront get-distribution --id E7K8B2EHD7P3U
+```
 
-- `deploy-marketplace.sh` - Main deployment script
-- `deploy-*.yaml` - CloudFormation templates for each product
-- `marketplace-config.json` - Deployment configuration
+### Monitor Registration Issues
+- Check Lambda function logs in CloudWatch
+- Verify SQS queue message processing
+- Test registration flow with marketplace tokens
 
-## Contributing
+## 🤝 Contributing
 
-1. Make changes to template or configuration
-2. Test locally by generating pages
-3. Deploy to staging environment first
-4. Deploy to production after validation
-5. Monitor CloudWatch logs for any issues
+1. Fork the repository
+2. Make changes to template or configuration
+3. Test locally with `npm run generate`
+4. Submit pull request with clear description
+5. Deploy after review and approval
 
-## Support
+## 📞 Support
 
-For issues with:
-- **Landing Pages**: Check CloudFront distributions and S3 buckets
-- **Registration**: Check Lambda function logs in CloudWatch
-- **Marketplace Integration**: Verify SQS queues and subscription handlers
+- **Repository Issues**: GitHub Issues
+- **AWS Infrastructure**: Check CloudFormation stacks
+- **Landing Page Problems**: Verify S3/CloudFront configurations
+- **Registration Flow**: Check Lambda function logs in CloudWatch
+
+---
+
+**Status**: ✅ Production Ready | **Last Updated**: October 2024 | **Maintained By**: Codio Team

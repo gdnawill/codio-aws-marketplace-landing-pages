@@ -1,33 +1,31 @@
 {
   "name": "codio-aws-marketplace-landing-pages",
   "version": "1.0.0",
-  "description": "Landing page templates and deployment infrastructure for Codio's AWS Marketplace offerings",
+  "description": "Production landing page system for Codio's AWS Marketplace offerings",
   "main": "generate-pages.js",
   "scripts": {
     "generate": "node generate-pages.js",
-    "deploy": "./deploy-marketplace.sh",
     "deploy:pages": "npm run generate && npm run upload && npm run invalidate",
     "upload": "aws s3 cp ai-labs-index.html s3://ai-labs-web-930e7cc0/index.html && aws s3 cp aws-labs-index.html s3://aws-labs-web-796a80b0/index.html && aws s3 cp cloud-labs-index.html s3://cloud-labs-web-68b3f5c0/index.html",
     "invalidate": "aws cloudfront create-invalidation --distribution-id E7K8B2EHD7P3U --paths '/*' && aws cloudfront create-invalidation --distribution-id E3L0YJ3DS46XHU --paths '/*' && aws cloudfront create-invalidation --distribution-id E13IJ9NI8XJ7T5 --paths '/*'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy:infrastructure": "./deploy-marketplace.sh"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codio/aws-marketplace-landing-pages.git"
+    "url": "git+https://github.com/gdnawill/codio-aws-marketplace-landing-pages.git"
   },
   "keywords": [
     "aws",
-    "marketplace",
+    "marketplace", 
     "codio",
     "landing-pages",
-    "saas"
+    "saas",
+    "cloudformation"
   ],
   "author": "Codio",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/codio/aws-marketplace-landing-pages/issues"
+  "engines": {
+    "node": ">=18.0.0"
   },
-  "homepage": "https://github.com/codio/aws-marketplace-landing-pages#readme",
-  "devDependencies": {},
-  "dependencies": {}
+  "homepage": "https://github.com/gdnawill/codio-aws-marketplace-landing-pages#readme"
 }
