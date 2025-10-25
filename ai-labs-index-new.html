@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codio AI Lab Sandboxes - AWS Marketplace</title>
+    <link rel="stylesheet" href="css/codio-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="alert"></div>
+
+    <div class="container">
+        <header class="header">
+            <img src="assets/codio-logo.png" alt="Codio Logo" class="logo">
+        </header>
+
+        <main class="main-content">
+            <section class="hero">
+                <h1 class="hero-title">Welcome to Codio AI Lab Sandboxes</h1>
+                <p class="hero-subtitle">
+                    AI-enhanced sandboxes with leading frameworks and APIs like LangChain, CrewAI, Hugging Face, Windsurf, and Anthropic via AWS Bedrock
+                </p>
+            </section>
+
+            <section class="registration">
+                <div class="registration-card">
+                    <h2>Complete Your Registration</h2>
+                    <p class="registration-subtitle">Please enter your contact details to get started</p>
+
+                    <form id="registrationForm" class="registration-form" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="productCode" value="1cw5v2q340a3sm36umvmam06">
+                        <input type="hidden" name="listingPath" value="ai-lab-sandboxes">
+
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" name="firstName" id="firstName" placeholder="First name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" name="lastName" id="lastName" placeholder="Last name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" name="email" id="email" placeholder="your.email@company.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" name="company" id="company" placeholder="Company name" required>
+                        </div>
+
+                        <button type="submit" class="btn-primary">Complete Registration</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 Codio. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        const form = document.getElementById('registrationForm');
+        const alert = document.getElementById('alert');
+
+        function showAlert(type, message) {
+            alert.className = `alert ${type}`;
+            alert.textContent = message;
+            alert.style.display = 'block';
+        }
+
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const regToken = getUrlParameter('x-amzn-marketplace-token');
+            if (!regToken) {
+                showAlert('danger', 'Registration token missing. Please access this page through AWS Marketplace.');
+                return;
+            }
+
+            const formData = new FormData(form);
+            const data = {
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                email: formData.get('email'),
+                company: formData.get('company'),
+                regToken: regToken,
+                productCode: '1cw5v2q340a3sm36umvmam06'
+            };
+
+            fetch('/redirectmarketplacetoken', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok || response.status === 302) {
+                    showAlert('success', 'Registration successful! Redirecting to Codio...');
+                    setTimeout(() => {
+                        window.location.href = 'https://codio.com/p/login?nextPath=/login';
+                    }, 2000);
+                } else {
+                    showAlert('danger', 'Registration failed. Please try again.');
+                }
+            })
+            .catch(error => {
+                showAlert('danger', 'Registration failed. Please try again.');
+            });
+        });
+    </script>
+</body>
+</html>

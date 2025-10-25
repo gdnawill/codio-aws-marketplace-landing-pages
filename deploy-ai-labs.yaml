@@ -1,0 +1,123 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: "AWS Marketplace SaaS entitlement and subscription portal - AI Labs"
+
+Parameters:
+  PricingModel:
+    Description: "The pricing model that you choose determines how buyers are able to purchase your product."
+    Type: String
+    Default: Contract-based-pricing
+    AllowedValues:
+      - Contract-with-consumption
+      - Contract-based-pricing
+      - Usage-based-pricing
+
+  SNSAccountID:
+    Type: String
+    Default: '287250355862'
+    Description: This is the AWS account hosting the SNS Entitlement and Subscription topics for your product.
+    AllowedValues:
+      - '287250355862'
+
+  SNSRegion:
+    Type: String
+    Default: us-east-1
+    Description: This is the AWS region of the SNS Entitlement and Subscription topics for your product.
+    AllowedValues:
+      - us-east-1
+
+  ProductId:
+    Description: "Product ID for AI Lab Sandboxes"
+    Type: String
+    Default: "prod-5o3phyeoglb2w"
+
+  MarketplaceTechAdminEmail:
+    Description: "Email address for notifications"
+    Type: String
+    Default: "will@codio.com"
+
+  UpdateFulfillmentURL:
+    Default: "false"
+    Type: String
+    Description: "WARNING: This will update your product's fulfillment URL automatically"
+    AllowedValues:
+      - "true"
+      - "false"
+
+Mappings:
+  PricingModelMap:
+    Usage-based-pricing:
+      PricingOption: subscriptions
+    Contract-based-pricing:
+      PricingOption: contracts
+    Contract-with-consumption:
+      PricingOption: contracts_with_subscription
+
+Resources:
+  SampleApp:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: !Sub "https://ws-assets-prod-iad-r-iad-ed304a55c2ca1aee.s3.us-east-1.amazonaws.com/cc168d1f-b5c7-4b68-a2f9-d785d68b2f19/saas/saas-integration-reference-cloudformation-deployment/packaged.yaml"
+      Parameters:
+        WebsiteS3BucketName: !Join
+          - '-'
+          - - 'ai-labs-web'
+            - !Select 
+              - 0
+              - !Split 
+                - "-"
+                - !Select
+                  - 2
+                  - !Split
+                    - "/"
+                    - !Ref AWS::StackId
+        NewSubscribersTableName: !Join
+          - '-'
+          - - 'AILabsSubscribers'
+            - !Select 
+              - 0
+              - !Split 
+                - "-"
+                - !Select
+                  - 2
+                  - !Split
+                    - "/"
+                    - !Ref AWS::StackId
+        AWSMarketplaceMeteringRecordsTableName: !Join
+          - '-'
+          - - 'AILabsMeteringRecords'
+            - !Select 
+              - 0
+              - !Split 
+                - "-"
+                - !Select
+                  - 2
+                  - !Split
+                    - "/"
+                    - !Ref AWS::StackId
+        TypeOfSaaSListing: !FindInMap  
+          - PricingModelMap
+          - !Ref PricingModel
+          - PricingOption  
+        SNSAccountID: !Ref SNSAccountID
+        SNSRegion: !Ref SNSRegion
+        ProductId: !Ref ProductId
+        MarketplaceTechAdminEmail: !Ref MarketplaceTechAdminEmail
+        CreateCrossAccountRole: 'false'
+        CrossAccountId: ''
+        CrossAccountRoleName: ''
+        MarketplaceSellerEmail: ''
+        CreateRegistrationWebPage: 'true'
+        UpdateFulfillmentURL: !Ref UpdateFulfillmentURL
+
+Outputs:
+  WebsiteS3Bucket:
+    Description: S3 Bucket for hosting the static site
+    Value: !GetAtt SampleApp.Outputs.WebsiteS3Bucket
+
+  LandingPagePreviewURL:
+    Description: Preview URL for landing page
+    Value: !GetAtt SampleApp.Outputs.LandingPagePreviewURL
+
+  AWSMarketplaceFulfillmentURL:
+    Description: AWS Marketplace fulfillment URL
+    Value: !GetAtt SampleApp.Outputs.MarketplaceFulfillmentURL

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codio Cybersecurity Training - AWS Marketplace</title>
+    <link rel="stylesheet" href="css/codio-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="alert"></div>
+    
+    <div class="container">
+        <header class="header">
+            <img src="assets/codio-logo.png" alt="Codio Logo" class="logo">
+        </header>
+        
+        <main class="main-content">
+            <section class="hero">
+                <h1 class="hero-title">Welcome to Codio Cybersecurity Training</h1>
+                <p class="hero-subtitle">
+                    Develop cybersecurity expertise through practical exercises
+                </p>
+            </section>
+            
+            <section class="registration">
+                <div class="registration-card">
+                    <h2>Complete Your Registration</h2>
+                    <p class="registration-subtitle">Please enter your contact details to get started</p>
+                    
+                    <form class="registration-form" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="productCode" value="codio-cybersecurity-prod-id">
+                        <input type="hidden" name="listingPath" value="cybersecurity">
+                        
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" name="firstName" id="firstName" placeholder="First name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" name="lastName" id="lastName" placeholder="Last name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactEmail">Email Address</label>
+                            <input type="email" name="contactEmail" id="contactEmail" placeholder="your.email@company.com" required>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">
+                            Complete Registration
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="footer">
+            <p>&copy; 2024 Codio. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <script src="js/registration.js"></script>
+</body>
+</html>

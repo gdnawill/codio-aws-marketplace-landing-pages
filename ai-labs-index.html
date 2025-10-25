@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codio - AI Lab Sandboxes - AWS Marketplace</title>
+    <meta name="api-endpoint" content="/redirectmarketplacetoken">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 50%, #4a5568 100%);
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px;
+        }
+        .container { 
+            background: white; 
+            border-radius: 20px; 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25); 
+            max-width: 1200px; 
+            width: 100%; 
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            min-height: 600px;
+            overflow: hidden;
+        }
+        .left-section {
+            padding: 60px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .right-section {
+            background: #f8fafc;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .logo { 
+            width: 140px; 
+            height: auto; 
+            margin-bottom: 30px; 
+        }
+        h1 { 
+            color: #1a202c; 
+            font-size: 3rem; 
+            font-weight: 700; 
+            margin-bottom: 20px; 
+            line-height: 1.1;
+        }
+        .subtitle { 
+            color: #4a5568; 
+            font-size: 1.3rem; 
+            margin-bottom: 40px; 
+            line-height: 1.5; 
+        }
+        .features { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 20px; 
+        }
+        .feature { 
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .feature-icon {
+            background: #e2e8f0;
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 1.2rem;
+            min-width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .feature-text h3 { 
+            color: #1a202c; 
+            font-size: 1.1rem;
+            margin-bottom: 4px; 
+        }
+        .feature-text p { 
+            color: #4a5568; 
+            font-size: 0.95rem; 
+        }
+        .form-section h2 {
+            color: #1a202c;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .form-subtitle {
+            color: #4a5568;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+        .form-group { 
+            margin-bottom: 20px; 
+        }
+        .form-row { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
+        }
+        label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: 500; 
+            color: #1a202c; 
+            font-size: 0.9rem;
+        }
+        input { 
+            width: 100%; 
+            padding: 12px 16px; 
+            border: 2px solid #e2e8f0; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            transition: border-color 0.2s;
+            background: white;
+        }
+        input:focus { 
+            outline: none; 
+            border-color: #3182ce; 
+        }
+        .btn { 
+            background: #3182ce;
+            color: white; 
+            padding: 16px 24px; 
+            border: none; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: background-color 0.2s; 
+            width: 100%; 
+            margin-top: 10px;
+        }
+        .btn:hover { 
+            background: #2c5aa0; 
+        }
+        .alert { 
+            padding: 12px 16px; 
+            border-radius: 8px; 
+            margin-bottom: 20px; 
+            display: none; 
+            font-size: 0.9rem;
+        }
+        .alert.success { 
+            background: #c6f6d5; 
+            color: #22543d; 
+            border: 1px solid #9ae6b4; 
+        }
+        .alert.danger { 
+            background: #fed7d7; 
+            color: #742a2a; 
+            border: 1px solid #fc8181; 
+        }
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+            .left-section, .right-section {
+                padding: 40px 30px;
+            }
+            h1 { font-size: 2.2rem; }
+            .subtitle { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <img src="https://codio.com/img/logos/codio-logo-dark.svg" alt="Codio Logo" class="logo">
+            <h1>Codio - AI Lab Sandboxes</h1>
+            <p class="subtitle">AI-enhanced sandboxes with leading frameworks and APIs like LangChain, CrewAI, Hugging Face, Windsurf, and Anthropic via AWS Bedrock</p>
+            
+            <div class="features">
+                
+                <div class="feature">
+                    <div class="feature-icon">✨</div>
+                    <div class="feature-text">
+                        <h3>AI Frameworks</h3>
+                        <p>LangChain, CrewAI, Hugging Face ready to use</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🚀</div>
+                    <div class="feature-text">
+                        <h3>Instant Setup</h3>
+                        <p>No installation required, launch in seconds</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <div class="feature-text">
+                        <h3>Enterprise Secure</h3>
+                        <p>Managed environments with usage controls</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="right-section">
+            <div class="form-section">
+                <h2>Get Started</h2>
+                <p class="form-subtitle">Complete your registration to access your labs</p>
+                
+                <div id="alert" class="alert"></div>
+                
+                <form id="registrationForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company" required>
+                    </div>
+                    <button type="submit" class="btn">Complete Registration</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('registrationForm');
+        const alert = document.getElementById('alert');
+
+        function showAlert(type, message) {
+            alert.className = `alert ${type}`;
+            alert.textContent = message;
+            alert.style.display = 'block';
+        }
+
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const regToken = getUrlParameter('x-amzn-marketplace-token');
+            if (!regToken) {
+                showAlert('danger', 'Registration token missing. Please access this page through AWS Marketplace.');
+                return;
+            }
+
+            const formData = new FormData(form);
+            const data = {
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                email: formData.get('email'),
+                company: formData.get('company'),
+                regToken: regToken,
+                productCode: 'prod-5o3phyeoglb2w'
+            };
+
+            fetch('/redirectmarketplacetoken', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok || response.status === 302) {
+                    showAlert('success', 'Registration successful! Redirecting to support...');
+                    setTimeout(() => {
+                        window.location.href = 'https://codio.com';
+                    }, 2000);
+                } else {
+                    showAlert('danger', 'Registration failed. Please try again.');
+                }
+            })
+            .catch(error => {
+                showAlert('danger', 'Registration failed. Please try again.');
+            });
+        });
+    </script>
+</body>
+</html>

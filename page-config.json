@@ -1,0 +1,73 @@
+{
+  "products": {
+    "cloud-labs": {
+      "name": "Codio - Cloud Labs for Tech Skills",
+      "description": "Cloud-based labs for programming, data, and security skills with Jupyter, VS Code, Python, Java, C++, SQL",
+      "productCode": "prod-5d5xaoqtgjjga",
+      "apiEndpoint": "/redirectmarketplacetoken",
+      "features": [
+        {
+          "icon": "💻",
+          "title": "Real Tools",
+          "description": "Jupyter, VS Code, Python, Java, SQL"
+        },
+        {
+          "icon": "🚀",
+          "title": "Instant Launch",
+          "description": "No software installation required"
+        },
+        {
+          "icon": "🔒",
+          "title": "Scalable Labs",
+          "description": "Manage thousands of learners"
+        }
+      ]
+    },
+    "aws-labs": {
+      "name": "Codio - AWS Labs Sandboxes",
+      "description": "Secure, browser-based AWS sandboxes for cloud training with AWS CLI, SDKs, IAM, S3, EC2, and more",
+      "productCode": "prod-h7ky33boidzsy",
+      "apiEndpoint": "/redirectmarketplacetoken",
+      "features": [
+        {
+          "icon": "☁️",
+          "title": "AWS Services",
+          "description": "CLI, SDKs, S3, EC2, IAM ready to use"
+        },
+        {
+          "icon": "🚀",
+          "title": "Instant Access",
+          "description": "No AWS account setup required"
+        },
+        {
+          "icon": "🔒",
+          "title": "Secure Environment",
+          "description": "Managed sandboxes with budget controls"
+        }
+      ]
+    },
+    "ai-labs": {
+      "name": "Codio - AI Lab Sandboxes",
+      "description": "AI-enhanced sandboxes with leading frameworks and APIs like LangChain, CrewAI, Hugging Face, Windsurf, and Anthropic via AWS Bedrock",
+      "productCode": "prod-5o3phyeoglb2w",
+      "apiEndpoint": "/redirectmarketplacetoken",
+      "features": [
+        {
+          "icon": "✨",
+          "title": "AI Frameworks",
+          "description": "LangChain, CrewAI, Hugging Face ready to use"
+        },
+        {
+          "icon": "🚀",
+          "title": "Instant Setup",
+          "description": "No installation required, launch in seconds"
+        },
+        {
+          "icon": "🔒",
+          "title": "Enterprise Secure",
+          "description": "Managed environments with usage controls"
+        }
+      ]
+    }
+  }
+}

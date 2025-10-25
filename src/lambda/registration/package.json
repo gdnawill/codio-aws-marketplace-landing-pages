@@ -1,0 +1,9 @@
+{
+  "name": "codio-marketplace-registration",
+  "version": "1.0.0",
+  "description": "AWS Marketplace registration handler for Codio",
+  "main": "index.js",
+  "dependencies": {
+    "aws-sdk": "^2.1400.0"
+  }
+}

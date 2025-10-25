@@ -1,0 +1,31 @@
+{
+  "marketplaceListings": {
+    "ai-skills": {
+      "name": "Codio AI Skills Training",
+      "description": "Build job-ready AI and machine learning skills with hands-on labs and real-world projects",
+      "productCode": "CODIO_AI_SKILLS_2024",
+      "path": "ai-skills",
+      "enabled": true
+    },
+    "data-analytics": {
+      "name": "Codio Data Analytics Training", 
+      "description": "Master data science and analytics with interactive coding environments and industry datasets",
+      "productCode": "CODIO_DATA_ANALYTICS_2024",
+      "path": "data-analytics",
+      "enabled": true
+    },
+    "cybersecurity": {
+      "name": "Codio Cybersecurity Training",
+      "description": "Develop cybersecurity expertise through hands-on labs and simulated attack scenarios",
+      "productCode": "CODIO_CYBERSECURITY_2024", 
+      "path": "cybersecurity",
+      "enabled": true
+    }
+  },
+  "deploymentSettings": {
+    "region": "us-east-1",
+    "environment": "production",
+    "retainResources": true,
+    "enableCloudFrontLogging": false
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "app": "npx ts-node --prefer-ts-exts bin/app.ts",
+  "watch": {
+    "include": [
+      "**"
+    ],
+    "exclude": [
+      "README.md",
+      "cdk*.json",
+      "**/*.d.ts",
+      "**/*.js",
+      "tsconfig.json",
+      "package*.json",
+      "yarn.lock",
+      "node_modules",
+      "test"
+    ]
+  },
+  "context": {
+    "@aws-cdk/aws-lambda:recognizeLayerVersion": true,
+    "@aws-cdk/core:checkSecretUsage": true,
+    "@aws-cdk/core:target": "aws-cdk-lib@2.87.0",
+
+    "aws-cdk:enableDiffNoFail": true,
+    "@aws-cdk/core:stackRelativeExports": true,
+    "@aws-cdk/aws-rds:lowercaseDbIdentifier": true,
+    "@aws-cdk/aws-lambda:recognizeVersionProps": true,
+    "@aws-cdk/aws-cloudfront:defaultSecurityPolicyTLSv1.2_2021": true,
+    "@aws-cdk/aws-secretsmanager:useAttachedSecretResourcePolicyForSecretTargetAttachments": true,
+    "@aws-cdk/aws-redshift:columnId": true,
+    "@aws-cdk/core:validateSnapshotRemovalPolicy": true,
+    "@aws-cdk/aws-codepipeline:crossAccountKeyAliasStackSafeResourceName": true,
+    "@aws-cdk/aws-s3:createDefaultLoggingPolicy": true,
+    "@aws-cdk/aws-sns-subscriptions:restrictSqsDescryption": true,
+    "@aws-cdk/aws-apigateway:disableCloudWatchRole": true,
+    "@aws-cdk/core:enablePartitionLiterals": true,
+    "@aws-cdk/aws-events:eventsTargetQueueSameAccount": true,
+    "@aws-cdk/aws-iam:minimizePolicies": true,
+    "@aws-cdk/core:disablePropertyValidation": true,
+    "@aws-cdk/aws-codepipeline:crossAccountKeysDefaultValueToFalse": true,
+    "@aws-cdk/aws-ecr-assets:duplicateTagsAllowed": true,
+    "@aws-cdk/aws-rds:databaseProxyUniqueResourceName": true,
+    "@aws-cdk/aws-codedeploy:removeAlarmsFromDeploymentGroup": true,
+    "@aws-cdk/aws-apigateway:authorizerChangeDeploymentLogicalId": true,
+    "@aws-cdk/aws-ec2:launchTemplateDefaultUserData": true,
+    "@aws-cdk/aws-secretsmanager:automaticRotation": true,
+    "@aws-cdk/aws-servicecatalog:productVersionAwareHashIdentifier": true,
+    "@aws-cdk/aws-ecs:arnFormatIncludesClusterName": true,
+    "@aws-cdk/core:suppressTemplateIndentation": true,
+    "codio-marketplace": {
+      "bucketName": "web-f810b8a0",
+      "assetsBucketName": "codio-awsmp-assets",
+      "distributionId": "E3ROD9ZTO98QPP",
+      "domainName": "d2c4qabg7j7d23.cloudfront.net",
+      "existingResources": {
+        "preserveS3": true,
+        "preserveCloudFront": true,
+        "existingStackName": "codio-marketplace-saas"
+      },
+      "listings": {
+        "aws-labs-sandboxes": {
+          "name": "AWS Labs Sandboxes",
+          "description": "Hands-on AWS cloud labs and sandbox environments for practical learning",
+          "productCode": "aws-labs-sandboxes-prod-id",
+          "path": "aws-labs-sandboxes"
+        },
+        "cloud-labs-tech-skills": {
+          "name": "Codio - Cloud Labs for Tech Skills",
+          "description": "Comprehensive cloud-based labs for developing technical skills across multiple domains",
+          "productCode": "codio-cloud-labs-prod-id",
+          "path": "cloud-labs-tech-skills"
+        },
+        "ai-lab-sandboxes": {
+          "name": "Codio AI Lab Sandboxes for Modern Skills",
+          "description": "AI-powered lab environments for building modern technical skills and competencies",
+          "productCode": "codio-ai-labs-prod-id",
+          "path": "ai-lab-sandboxes"
+        }
+      }
+    }
+  }
+}
