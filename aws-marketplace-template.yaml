@@ -1180,7 +1180,7 @@ Outputs:
       - N/A
   WebsiteS3Bucket:
     Description: S3 bucket for hosting the static site. You can retrieve the files
-      at https://github.com/aws-samples/aws-marketplace-serverless-saas-integration/tree/master/web.
+      at https://github.com/aws-samples/aws-marketplace-serverless-saas-integration/tree/main/web.
     Value:
       Fn::If:
       - CreateWeb
